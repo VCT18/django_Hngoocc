@@ -1,15 +1,6 @@
 {% extends "layout.html" %} 
 {% load humanize %}
-
 {% block content %}
-
-<style>
-    .product-image {
-        height: 250px; /* Chiều cao cố định */
-        width: 100%;   /* Chiều rộng tự động chiếm toàn bộ */
-        object-fit: cover; /* Giữ tỷ lệ ảnh, cắt bớt nếu cần */
-    }
-</style>
 
 <div class="container">
     <div class="row">
@@ -31,11 +22,11 @@
                     <div class="col-md-4 mb-4">
                         <div class="card" style="width: 18rem;">
                             <a href="{% url "product_detail" sanpham.id %}">
-                                <img src="{{ sanpham.image.url }}" class="card-img-top product-image" alt="...">
+                                <img src="{{ sanpham.image.url }}" class="card-img-top" alt="...">
                             </a>
                             <div class="card-body">
                                 <h5 class="card-title">{{ sanpham.name }}</h5>
-                                <h5 class="card-title text-danger">{{ sanpham.price |floatformat | intcomma }} VND</h5>
+                                <h5 class="card-title text-danger">{{ sanpham.price |floatformat | intcomma}} VND</h5>
                                 <a href="#" class="btn btn-primary">Add to cart</a>
                             </div>
                         </div>

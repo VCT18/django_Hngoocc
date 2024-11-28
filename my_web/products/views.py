@@ -11,7 +11,7 @@ def product_detail (request, pk):
         'product' : product,
         'categories' : categories,
     }
-    return render (request, 'core/index.html', context)
+    return render (request, 'products/product_detail.html', context)
 
 def product_category (request, pk): 
     categories = Category.objects.all()
