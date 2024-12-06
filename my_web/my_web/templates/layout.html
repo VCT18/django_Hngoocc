@@ -30,7 +30,7 @@
               <li class="nav-item me-5">
                 <a class="nav-link" href="{% url "contact" %}">Contact</a>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown me-5">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   All Categories
                 </a>
@@ -41,14 +41,17 @@
                   {% endfor %}
                 </ul>
               </li>
-              
+              <li>
+                <div>
+                  <form method="GET" action="{% url 'search'%}" class="d-flex" role="search">
+                   
+                    <input class="form-control me-2" name='q' type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+                </div>
+              </li>
             </ul>
-            <div>
-              <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-              </form>
-            </div>
+            
             
           </div>
         </div>

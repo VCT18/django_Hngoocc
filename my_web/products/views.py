@@ -1,6 +1,8 @@
 
 from django.shortcuts import render, get_object_or_404
 from .models import Category, Product
+from django.contrib import messages
+
 # Create your views here.
 def product_detail (request, pk):
     categories = Category.objects.all()
@@ -22,3 +24,24 @@ def product_category (request, pk):
             'categories' : categories,
     }
     return render (request, 'core/index.html', context)
+def search(request):  
+    categories = Category.objects.all()  
+    query = request.GET.get('q')  
+    if query:  
+        products = Product.objects.filter(name__icontains=query)  
+        if products is not None:  
+            count = products.count  
+            context = {  
+            'products': products,  
+            'categories': categories,  
+            'count': count ,
+            'query' : query
+            }  
+            return render(request, 'products/store.html', context)  
+        else:  
+            messages.error(request, "No products found")  
+    else:  
+        products = Product.objects.all()  
+    count = products.count
+    
+    return render(request, 'products/store.html', context)
