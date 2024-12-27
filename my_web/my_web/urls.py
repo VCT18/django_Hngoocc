@@ -24,8 +24,8 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('', include('core.urls')), 
-
-    path('', product_detail, name='home'),  # Đường dẫn cho trang chính
+    path('', include('user.urls')), 
+    path('', product_detail, name='home'), 
 
     path('products/', include('products.urls')),
 
