@@ -4,6 +4,15 @@
     <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
       <div class="card-body">
         <h4 class="card-title mb-4">Sign in</h4>
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="text-{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
         <form method ="POST">
             {% csrf_token %}
           <div class="form-group">
@@ -11,6 +20,12 @@
           </div>
           <div class="form-group mt-2">
             {{ form.password }}
+            <div class="form-check mt-2">
+              <input class="form-check-input" type="checkbox" onclick="togglePasswordVisibility()">
+              <label class="form-check-label" for="autoSizingCheck">
+                Show Password
+              </label>
+            </div>
           </div>
           <div class="form-group my-4">
             <a href="#" class="float-end">Forgot password?</a>
@@ -24,7 +39,15 @@
 
       <p class="text-center my-4"> Don't have account?<a href="{% url 'signup' %}">Sign up</a></p>
     </div>
-
-
   </section>
+  <script>
+    function togglePasswordVisibility() {
+      var x = document.getElementById("inputPW");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+  </script>
 {% endblock content %}

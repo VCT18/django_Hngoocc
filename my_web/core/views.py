@@ -4,8 +4,11 @@ from products.models import Category, Product
 def index(request):
     categories = Category.objects.all() 
     products = Product.objects.all()
+    products_on_sale = Product.objects.filter(on_sale=True)
+
     context = {
         'categories': categories,
+        'products_on_sale' : products_on_sale,
         'products': products
     }
     

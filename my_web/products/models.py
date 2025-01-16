@@ -14,8 +14,9 @@ class Product(models.Model):
         category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1) 
         name = models.CharField(max_length=100)
         image = models.ImageField(upload_to='products/')
-        
         price = models. DecimalField(max_digits=10, decimal_places=2)
+        new_price = models. DecimalField(max_digits=10, decimal_places=2, default=0)
+        on_sale = models.BooleanField(default=False)
         detail = models.TextField(blank=True)
         created_at = models.DateTimeField (auto_created=True)
         
