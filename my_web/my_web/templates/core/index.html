@@ -28,7 +28,7 @@
         <div class="col-9 mt-5">
             <div class="row">
                 <h3 class="text-center my-3" >On Sale</h3>
-                {% for sanpham in products_on_sale %} 
+                {% comment %} {% for sanpham in products_on_sale %} 
                 <div class="col-md-4 mb-4">
                     <div class="card" style="width: 18rem;">
                         <a href="{% url "product_detail" sanpham.id %}">
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 </div>
-                {% endfor %}
+                {% endfor %} {% endcomment %}
 
                 <h3 class="text-center my-3" >All Products</h3>
                 {% for sanpham in products %} 
