@@ -28,7 +28,7 @@
         <div class="col-9 mt-5">
             <div class="row">
                 <h3 class="text-center my-3" >On Sale</h3>
-                {% comment %} {% for sanpham in products_on_sale %} 
+                {% for sanpham in products_on_sale %} 
                 <div class="col-md-4 mb-4">
                     <div class="card" style="width: 18rem;">
                         <a href="{% url "product_detail" sanpham.id %}">
@@ -37,30 +37,40 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ sanpham.name }}</h5>
                             <del>  
-                                <h6 class="card-title text-secondary">{{ sanpham.price | floatformat | intcomma }}đ</h6>  
+                                <h6 class="card-title text-secondary">{{ sanpham.price | floatformat | intcomma }}VND</h6>  
                             </del>  
-                            <h4 class="card-title text-danger">{{ sanpham.new_price | floatformat | intcomma }}đ</h4>                            <p class="">{{ sanpham.detail }}</p>
+                            <h4 class="card-title text-danger">{{ sanpham.new_price | floatformat | intcomma }}VND</h4>                            <p class="">{{ sanpham.detail }}</p>
                             <a href="#" class="btn btn-primary">Add to cart</a>
                         </div>
                     </div>
                 </div>
-                {% endfor %} {% endcomment %}
+                {% endfor %} 
 
-                <h3 class="text-center my-3" >All Products</h3>
-                {% for sanpham in products %} 
-                    <div class="col-md-4 mb-4">
-                        <div class="card" style="width: 18rem;">
-                            <a href="{% url "product_detail" sanpham.id %}">
-                                <img src="{{ sanpham.image.url }}" class="card-img-top product-image" alt="...">
-                            </a>
-                            <div class="card-body">
-                                <h5 class="card-title">{{ sanpham.name }}</h5>
-                                <h5 class="card-title text-danger">{{ sanpham.price |floatformat | intcomma }} VND</h5>
-                                <a href="#" class="btn btn-primary">Add to cart</a>
+                <h3 class="text-center my-3">Tất cả Sản phẩm</h3>
+                <div class="row">
+                    {% for sanpham in products %}
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <a href="{% url 'product_detail' sanpham.id %}">
+                                    <img src="{{ sanpham.image.url }}" class="card-img-top product-image" alt="{{ sanpham.name }}">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ sanpham.name }}</h5>
+                                    {% if sanpham.on_sale %}
+                                        <del>
+                                            <h6 class="card-title text-secondary">{{ sanpham.price|floatformat|intcomma }} VND</h6>
+                                        </del>
+                                        <h4 class="card-title text-danger">{{ sanpham.new_price|floatformat|intcomma }} VND</h4>
+                                    {% else %}
+                                        <h6 class="card-title text-danger">{{ sanpham.price|floatformat|intcomma }} VND</h6>
+                                    {% endif %}
+                                    <p class="card-text">{{ sanpham.detail }}</p>
+                                    <a href="#" class="btn btn-primary">Thêm vào giỏ hàng</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
